@@ -112,6 +112,14 @@ toProduct: function(event) {
       url: '/pages/topList/topList',
     })
   },
+
+
+  toMy: function(){
+    wx.navigateTo({
+      url: '/pages/my/my',
+    })
+  },
+
   onHide: function () {
     this.setData({
       autoplay: false

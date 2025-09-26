@@ -1,0 +1,67 @@
+/* 我的页面样式 */
+.my-container {
+	padding: 40rpx 20rpx;
+	background: #f7f7f7;
+	min-height: 100vh;
+}
+.user-info {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background: #fff;
+	border-radius: 20rpx;
+	padding: 40rpx 0 30rpx 0;
+	margin-bottom: 30rpx;
+	box-shadow: 0 4px 16px rgba(27,125,236,0.08);
+}
+.avatar {
+	width: 120rpx;
+	height: 120rpx;
+	border-radius: 50%;
+	margin-bottom: 20rpx;
+}
+.nickname {
+	font-size: 32rpx;
+	font-weight: bold;
+	margin-bottom: 10rpx;
+}
+.gender {
+	display: flex;
+	align-items: center;
+	font-size: 24rpx;
+	color: #888;
+}
+.gender-icon {
+	width: 32rpx;
+	height: 32rpx;
+	margin-right: 8rpx;
+}
+.order-section {
+	background: #fff;
+	border-radius: 20rpx;
+	padding: 30rpx 0;
+	box-shadow: 0 4px 16px rgba(27,125,236,0.05);
+}
+.order-title {
+	font-size: 28rpx;
+	font-weight: bold;
+	margin-left: 30rpx;
+	margin-bottom: 20rpx;
+}
+.order-list {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+.order-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 24rpx;
+	color: #555;
+}
+.order-icon {
+	width: 60rpx;
+	height: 60rpx;
+	margin-bottom: 8rpx;
+}

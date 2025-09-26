@@ -73,5 +73,10 @@
       </swiper-item>
     </swiper>
   </view>
+
+  <!-- 自己测试的区域 -->
+      <view class="test-area">
+        <button class="test-btn" bindtap="toMy">跳转</button>
+      </view>
   </view>
 </view>
