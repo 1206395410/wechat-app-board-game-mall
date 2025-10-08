@@ -3,7 +3,7 @@
 export default (url, data={}, method='GET') => {
     return new Promise ((resolve, reject) => {
         wx.request({
-          url: 'http://localhost:8080' + url, 
+          url: 'http://localhost:8322' + url, 
           data,
           method,
           success: (res) => {

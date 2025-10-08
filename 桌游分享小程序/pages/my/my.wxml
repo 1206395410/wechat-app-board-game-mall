@@ -1,33 +1,6 @@
 <!-- 我的页面 -->
 <view class="my-container">
 	<view class="user-info">
-		<image class="avatar" src="{{avatarUrl}}"></image>
-		<view class="nickname">{{nickName}}</view>
-		<view class="gender">
-			<image wx:if="{{gender==1}}" src="../../images/icon/man.png" class="gender-icon"></image>
-			<image wx:if="{{gender==2}}" src="../../images/icon/woman.png" class="gender-icon"></image>
-			<text wx:if="{{gender==0}}">保密</text>
-		</view>
-	</view>
-	<view class="order-section">
-		<view class="order-title">我的订单</view>
-		<view class="order-list">
-			<view class="order-item" bindtap="toOrderList" data-type="all">
-				<image src="../../images/icon/toPay.png" class="order-icon"></image>
-				<text>待付款</text>
-			</view>
-			<view class="order-item" bindtap="toOrderList" data-type="delivery">
-				<image src="../../images/icon/toDelivery.png" class="order-icon"></image>
-				<text>待发货</text>
-			</view>
-			<view class="order-item" bindtap="toOrderList" data-type="take">
-				<image src="../../images/icon/toTake.png" class="order-icon"></image>
-				<text>待收货</text>
-			</view>
-			<view class="order-item" bindtap="toOrderList" data-type="comment">
-				<image src="../../images/icon/toComment.png" class="order-icon"></image>
-				<text>待评价</text>
-			</view>
-		</view>
+		<view class="nickname" bindtap="getWxCode">{{nickName}}</view>
 	</view>
 </view>

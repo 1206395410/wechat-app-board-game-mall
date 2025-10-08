@@ -2,48 +2,51 @@ import request from '../../utils/request'
 
 Page({
   data: {
-    avatarUrl: '../../images/icon/user.png',
-    nickName: '未登录',
-    gender: 0, // 0:保密 1:男 2:女
-    orderCount: {
-      all: 0,
-      delivery: 0,
-      take: 0,
-      comment: 0
-    }
+    nickName: '未登录'
   },
 
-  onLoad() {
-    this.getUserInfo()
-    this.getOrderCount()
-  },
-
-  getUserInfo() {
-    request('/user/info').then(res => {
-      if (res && res.code === 0) {
-        this.setData({
-          avatarUrl: res.data.avatarUrl || '../../images/icon/user.png',
-          nickName: res.data.nickName || '未登录',
-          gender: res.data.gender || 0
+  getWxCode() {
+    wx.login({
+      success: res => {
+        if (res.code) {
+          // 获取当前小程序的 appid
+          let appid = ''
+          if (wx.getAccountInfoSync) {
+            const accountInfo = wx.getAccountInfoSync()
+            appid = accountInfo.miniProgram.appId || ''
+            console.log('当前小程序的appid:', appid)
+          }
+          wx.showToast({
+            title: 'code获取成功',
+            icon: 'success',
+            duration: 1500
+          })
+          console.log('微信code:', res.code)
+          // 调用后端登录接口
+          request('/login/login', {
+            appid: appid,
+            code: res.code
+          }).then(res => {
+            this.setData({
+              nickName: res
+            })
+            console.log(res)
+          }).catch(() => {})
+        } else {
+          wx.showToast({
+            title: '获取code失败',
+            icon: 'none',
+            duration: 1500
+          })
+        }
+      },
+      fail: () => {
+        wx.showToast({
+          title: '登录失败',
+          icon: 'none',
+          duration: 1500
         })
       }
-    }).catch(() => {})
-  },
-
-  getOrderCount() {
-    request('/order/count').then(res => {
-      if (res && res.code === 0) {
-        this.setData({
-          orderCount: res.data
-        })
-      }
-    }).catch(() => {})
-  },
-
-  toOrderList(e) {
-    const type = e.currentTarget.dataset.type
-    wx.navigateTo({
-      url: `/pages/orderList/orderList?type=${type}`
     })
   }
 })
