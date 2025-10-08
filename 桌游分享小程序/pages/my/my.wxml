@@ -1,6 +1,10 @@
 <!-- 我的页面 -->
 <view class="my-container">
-	<view class="user-info">
-		<view class="nickname" bindtap="getWxCode">{{nickName}}</view>
+	<view class="item">
+		<view class="login" bindtap="getWxCode">{{nickName}}</view>
+	</view>
+
+  <view class="item">
+		<view class="pay" bindtap="getWxCode">支付</view>
 	</view>
 </view>
