@@ -1,4 +1,5 @@
 import request from '../../utils/request'
+import request, { setToken } from '../../utils/loginRequest'
 
 Page({
   data: {
@@ -30,6 +31,7 @@ Page({
             this.setData({
               nickName: res
             })
+            setToken(res)
             console.log(res)
           }).catch(() => {})
         } else {
@@ -49,7 +51,7 @@ Page({
       }
     })
   },
-  
+
   onPayTap() {
     // 示例 orderId，实际可从订单列表或页面数据获取
     const orderId = 123;
