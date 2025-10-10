@@ -57,23 +57,20 @@ Page({
     const orderId = 123;
     loginRequest('/login/pay', { }, 'GET').then(res => {
       console.log(res)
-      if (res && res.code === 0 && res.data) {
-        wx.requestPayment({
-          timeStamp: res.timeStamp,
-          nonceStr: res.nonceStr,
-          package: res.package,
-          signType: res.signType,
-          paySign: res.paySign,
-          success: function () {
-            wx.showToast({ title: '支付成功', icon: 'success' });
-          },
-          fail: function () {
-            wx.showToast({ title: '支付失败', icon: 'none' });
-          }
-        });
-      } else {
-        wx.showToast({ title: '获取支付信息失败', icon: 'none' });
-      }
+      wx.requestPayment({
+        timeStamp: res.timeStamp,
+        nonceStr: res.nonceStr,
+        package: res.packageValue,
+        signType: res.signType,
+        paySign: res.paySign,
+        success: function () {
+          wx.showToast({ title: '支付成功', icon: 'success' });
+        },
+        fail: function (err) {
+          wx.showToast({ title: '支付失败', icon: 'none' });
+          console.error('支付失败原因:', err);
+        }
+      });
     }).catch(() => {
       wx.showToast({ title: '支付接口异常', icon: 'none' });
     });
