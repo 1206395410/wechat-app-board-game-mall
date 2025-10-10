@@ -48,5 +48,31 @@ Page({
         })
       }
     })
+  },
+  
+  onPayTap() {
+    // 示例 orderId，实际可从订单列表或页面数据获取
+    const orderId = 123;
+    request('/order/pay', { orderId }, 'POST').then(res => {
+      if (res && res.code === 0 && res.data) {
+        wx.requestPayment({
+          timeStamp: res.data.timeStamp,
+          nonceStr: res.data.nonceStr,
+          package: res.data.package,
+          signType: res.data.signType,
+          paySign: res.data.paySign,
+          success: function () {
+            wx.showToast({ title: '支付成功', icon: 'success' });
+          },
+          fail: function () {
+            wx.showToast({ title: '支付失败', icon: 'none' });
+          }
+        });
+      } else {
+        wx.showToast({ title: '获取支付信息失败', icon: 'none' });
+      }
+    }).catch(() => {
+      wx.showToast({ title: '支付接口异常', icon: 'none' });
+    });
   }
 })

@@ -4,7 +4,7 @@
 		<view class="login" bindtap="getWxCode">{{nickName}}</view>
 	</view>
 
-  <view class="item">
-		<view class="pay" bindtap="getWxCode">支付</view>
+	<view class="item">
+		<view class="pay" bindtap="onPayTap">支付</view>
 	</view>
 </view>
