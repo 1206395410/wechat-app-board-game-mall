@@ -11,13 +11,15 @@ export function setToken(t) {
 // 发送请求，自动携带 token 到请求头
 export default function loginRequest(url, data = {}, method = 'GET') {
 	return new Promise((resolve, reject) => {
+		let header = { token };
+		if (method.toUpperCase() === 'POST') {
+			header['Content-Type'] = 'application/json';
+		}
 		wx.request({
 			url: 'http://localhost:8080' + url,
-			data,
+			data: method.toUpperCase() === 'POST' ? JSON.stringify(data) : data,
 			method,
-			header: {
-				token: token
-			},
+			header,
 			success: (res) => {
 				resolve(res.data);
 			},
