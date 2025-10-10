@@ -55,14 +55,15 @@ Page({
   onPayTap() {
     // 示例 orderId，实际可从订单列表或页面数据获取
     const orderId = 123;
-    loginRequest('/order/pay', { orderId }, 'POST').then(res => {
+    loginRequest('/login/pay', { }, 'GET').then(res => {
+      console.log(res)
       if (res && res.code === 0 && res.data) {
         wx.requestPayment({
-          timeStamp: res.data.timeStamp,
-          nonceStr: res.data.nonceStr,
-          package: res.data.package,
-          signType: res.data.signType,
-          paySign: res.data.paySign,
+          timeStamp: res.timeStamp,
+          nonceStr: res.nonceStr,
+          package: res.package,
+          signType: res.signType,
+          paySign: res.paySign,
           success: function () {
             wx.showToast({ title: '支付成功', icon: 'success' });
           },

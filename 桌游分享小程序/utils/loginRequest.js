@@ -16,7 +16,7 @@ export default function loginRequest(url, data = {}, method = 'GET') {
 			header['Content-Type'] = 'application/json';
 		}
 		wx.request({
-			url: 'http://localhost:8080' + url,
+			url: 'http://localhost:8322' + url,
 			data: method.toUpperCase() === 'POST' ? JSON.stringify(data) : data,
 			method,
 			header,
