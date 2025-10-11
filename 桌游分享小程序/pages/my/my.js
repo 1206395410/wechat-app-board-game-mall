@@ -24,7 +24,7 @@ Page({
           })
           console.log('微信code:', res.code)
           // 调用后端登录接口
-          request('/login/login', {
+          request('/wx/login', {
             appid: appid,
             code: res.code
           }).then(res => {
@@ -53,16 +53,15 @@ Page({
   },
 
   onPayTap() {
-    // 示例 orderId，实际可从订单列表或页面数据获取
-    const orderId = 123;
-    loginRequest('/login/pay', { }, 'GET').then(res => {
+    loginRequest('/wx/pay', { }, 'GET').then(res => {
       console.log(res)
+      let data = res.data.data
       wx.requestPayment({
-        timeStamp: res.timeStamp,
-        nonceStr: res.nonceStr,
-        package: res.packageValue,
-        signType: res.signType,
-        paySign: res.paySign,
+        timeStamp: data.timeStamp,
+        nonceStr: data.nonceStr,
+        package: data.packageValue,
+        signType: data.signType,
+        paySign: data.paySign,
         success: function () {
           wx.showToast({ title: '支付成功', icon: 'success' });
         },
